@@ -1,0 +1,37 @@
+name: Build APK
+
+on:
+  push:
+    branches:
+      - main  # Gantilah 'main' dengan nama cabang Anda jika berbeda
+  pull_request:
+    branches:
+      - main  # Gantilah 'main' dengan nama cabang Anda jika berbeda
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Menentukan OS yang digunakan
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Mengambil kode dari repository
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2  # Mengatur JDK 11
+        with:
+          java-version: '11'
+
+      - name: Set up Android SDK
+        uses: reactivecircus/android-sdk@v2  # Mengatur SDK Android
+        with:
+          api-level: 30
+          build-tools: '30.0.3'
+
+      - name: Build APK
+        run: ./gradlew assembleRelease  # Memulai build APK menggunakan Gradle
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v2  # Mengupload APK yang dibangun
+        with:
+          name: app-release-apk
+          path: app/build/outputs/apk/release/app-release.apk  # Path APK yang dibangun
