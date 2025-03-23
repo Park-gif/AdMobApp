@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val INTERSTITIAL_AD = "ca-app-pub-3940256099942544/1033173712"
-        private const val REWARDED_AD = "ca-app-pub-3940256099942544/5224354917"
+        private const val INTERSTITIAL_AD = "ca-app-pub-9230663433249370/6152029709"
+        private const val REWARDED_AD = "ca-app-pub-9230663433249370/5065011458"
     }
 }
